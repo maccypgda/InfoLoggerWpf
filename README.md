@@ -1,0 +1,2 @@
+# InfoLoggerWpf
+InfoLogger with GUI 
