@@ -1,0 +1,12 @@
+c:\users\mcypukox\documents\visual studio 2013\Projects\InfoLoggerWpf\InfoLoggerWpf\bin\Debug\InfoLoggerWpf.exe.config
+c:\users\mcypukox\documents\visual studio 2013\Projects\InfoLoggerWpf\InfoLoggerWpf\bin\Debug\InfoLoggerWpf.exe
+c:\users\mcypukox\documents\visual studio 2013\Projects\InfoLoggerWpf\InfoLoggerWpf\bin\Debug\InfoLoggerWpf.pdb
+c:\users\mcypukox\documents\visual studio 2013\Projects\InfoLoggerWpf\InfoLoggerWpf\obj\Debug\MainWindow.baml
+c:\users\mcypukox\documents\visual studio 2013\Projects\InfoLoggerWpf\InfoLoggerWpf\obj\Debug\MainWindow.g.cs
+c:\users\mcypukox\documents\visual studio 2013\Projects\InfoLoggerWpf\InfoLoggerWpf\obj\Debug\App.g.cs
+c:\users\mcypukox\documents\visual studio 2013\Projects\InfoLoggerWpf\InfoLoggerWpf\obj\Debug\InfoLoggerWpf_MarkupCompile.cache
+c:\users\mcypukox\documents\visual studio 2013\Projects\InfoLoggerWpf\InfoLoggerWpf\obj\Debug\InfoLoggerWpf.g.resources
+c:\users\mcypukox\documents\visual studio 2013\Projects\InfoLoggerWpf\InfoLoggerWpf\obj\Debug\InfoLoggerWpf.Properties.Resources.resources
+c:\users\mcypukox\documents\visual studio 2013\Projects\InfoLoggerWpf\InfoLoggerWpf\obj\Debug\InfoLoggerWpf.csproj.GenerateResource.Cache
+c:\users\mcypukox\documents\visual studio 2013\Projects\InfoLoggerWpf\InfoLoggerWpf\obj\Debug\InfoLoggerWpf.exe
+c:\users\mcypukox\documents\visual studio 2013\Projects\InfoLoggerWpf\InfoLoggerWpf\obj\Debug\InfoLoggerWpf.pdb
