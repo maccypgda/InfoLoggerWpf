@@ -25,6 +25,9 @@ namespace InfoLoggerWpf
     public partial class MainWindow : Window
     {
         public static string path = "C:\\work\\InfoLoggerLog.csv";
+        public static string intoLables;
+        public static int stringLength;
+        public static string[] labels = new string[5];
         private static string compNameFromReg()
         {
             RegistryKey regedit = Registry.CurrentUser.OpenSubKey("Volatile Environment", true);
@@ -88,6 +91,21 @@ namespace InfoLoggerWpf
             return String.Join(",", userList);
         }
 
+        public static void sendDataToLabel()
+        {
+            intoLables = readFromFile();
+            stringLength = readFromFile().Length;
+            int n =0;
+             
+             for (int i = 0; i < stringLength; i++)
+             {
+                 if (intoLables[i] != ',')
+                     labels[n] += intoLables[i];
+                 else
+                     n++;
+             }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -106,46 +124,26 @@ namespace InfoLoggerWpf
             createFile();
             readFromFile();
             writeToFile(shiftListAndReturnResults(convertDataToList(), loggedUser));
+            sendDataToLabel();
 
         }
 
-        private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
+        private void Label_Loaded(object sender, RoutedEventArgs e)
         {
-            //textBox1.Value(convertDataToList().getindex(0))
+            var label1 = sender as Label;
+            label1.Content = labels[0];
+
+            var label2 = sender as Label;
+            label2.Content = labels[1];
+
+            var label3 = sender as Label;
+            label3.Content = labels[2];
+
+            var label4 = sender as Label;
+            label4.Content = labels[3];
+
+            //var label5 = sender as Label;
+           // label5.Content = labels[5];
         }
-
-
-        //[STAThread]
-        //public static void Main(string[] args)
-        //{
-        //    MainWindow mw = new MainWindow();
-        //    mw.InitializeComponent();
-
-        //    mw.Left = System.Windows.SystemParameters.WorkArea.Width - mw.Width;
-        //    mw.Top = System.Windows.SystemParameters.WorkArea.Height - mw.Height;
-
-        //    string machineName = Environment.MachineName;
-        //    string userName = Environment.UserName;
-        //    //Console.WriteLine("Current logged user: ");
-        //    // Console.WriteLine(machineName + " " + userName);
-
-        //    //Currently logged user
-        //    string loggedUser = compNameFromReg();
-
-        //    createFile();
-        //    readFromFile();
-        //    writeToFile(shiftListAndReturnResults(convertDataToList(), loggedUser));
-
-        //    //Date of OS installation
-        //    //Console.WriteLine("Date of OS installation: ");
-        //    //DateTime creation = File.GetCreationTime(@"C:\Windows\WindowsUpdate.log");
-        //    //Console.WriteLine(Convert.ToString(creation));
-        //}
-
-        
-
-
-
-
     }
 }
