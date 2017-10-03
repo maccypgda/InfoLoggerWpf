@@ -20,6 +20,7 @@ using System.Threading;
 using Microsoft.Win32;
 using System.Reflection;
 
+
 namespace InfoLoggerWpf
 {
     public partial class MainWindow : Window
@@ -95,15 +96,16 @@ namespace InfoLoggerWpf
         {
             intoLables = readFromFile();
             stringLength = readFromFile().Length;
-            int n =0;
-             
-             for (int i = 0; i < stringLength; i++)
-             {
-                 if (intoLables[i] != ',')
-                     labels[n] += intoLables[i];
-                 else
-                     n++;
-             }
+            int n = 0;
+
+            for (int i = 0; i < stringLength; i++)
+            {
+                if (intoLables[i] != ',')
+                    labels[n] += intoLables[i];
+                else
+                    n++;
+            }
+
         }
 
         public MainWindow()
@@ -126,24 +128,29 @@ namespace InfoLoggerWpf
             writeToFile(shiftListAndReturnResults(convertDataToList(), loggedUser));
             sendDataToLabel();
 
+            textBlock.Text = labels[0];
+            textBlock1.Text = labels[1];
+            textBlock2.Text = labels[2];
+            textBlock3.Text = labels[3];
+            textBlock4.Text = labels[4];
         }
 
-        private void Label_Loaded(object sender, RoutedEventArgs e)
-        {
-            var label1 = sender as Label;
-            label1.Content = labels[0];
+        //private void Label_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    var label1 = sender as Label;
+        //    label1.Content = labels[0];
 
-            var label2 = sender as Label;
-            label2.Content = labels[1];
+        //    var label2 = sender as Label;
+        //    label2.Content = labels[1];
 
-            var label3 = sender as Label;
-            label3.Content = labels[2];
+        //    var label3 = sender as Label;
+        //    label3.Content = labels[2];
 
-            var label4 = sender as Label;
-            label4.Content = labels[3];
+        //    var label4 = sender as Label;
+        //    label4.Content = labels[3];
 
-            //var label5 = sender as Label;
-           // label5.Content = labels[5];
+        //    //var label5 = sender as Label;
+        //   // label5.Content = labels[5];
+        //}
         }
-    }
 }
