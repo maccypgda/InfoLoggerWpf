@@ -19,12 +19,17 @@ using System.Diagnostics;
 using System.Threading;
 using Microsoft.Win32;
 using System.Reflection;
+using System.Globalization;
+
 
 namespace InfoLoggerWpf
 {
     public partial class MainWindow : Window
     {
         public static string path = "C:\\work\\InfoLoggerLog.csv";
+        //public static string intoLables;
+        //public static int stringLength;
+        //public static string[] labels = new string[5];
         private static string compNameFromReg()
         {
             RegistryKey regedit = Registry.CurrentUser.OpenSubKey("Volatile Environment", true);
@@ -36,7 +41,7 @@ namespace InfoLoggerWpf
                 return "N/A";
             }
             else
-                return currentLoggedUserName;
+                return currentLoggedUserName +" "+ DateTime.Now;
         }
 
         public static void writeToFile(string dataToWrite)
@@ -88,6 +93,22 @@ namespace InfoLoggerWpf
             return String.Join(",", userList);
         }
 
+        //public static void sendDataToLabel()
+        //{
+        //    intoLables = readFromFile();
+        //    stringLength = readFromFile().Length;
+        //    int n = 0;
+
+        //    for (int i = 0; i < stringLength; i++)
+        //    {
+        //        if (intoLables[i] != ',')
+        //            labels[n] += intoLables[i];
+        //        else
+        //            n++;
+        //    }
+
+        //}
+
         public MainWindow()
         {
             InitializeComponent();
@@ -98,7 +119,7 @@ namespace InfoLoggerWpf
             string machineName = Environment.MachineName;
             string userName = Environment.UserName;
             //Console.WriteLine("Current logged user: ");
-            // Console.WriteLine(machineName + " " + userName);
+            //Console.WriteLine(machineName + " " + userName);
 
             //Currently logged user
             string loggedUser = compNameFromReg();
@@ -107,45 +128,37 @@ namespace InfoLoggerWpf
             readFromFile();
             writeToFile(shiftListAndReturnResults(convertDataToList(), loggedUser));
 
+            //sendDataToLabel();
+            
+            //textBlock.Text = labels[0];
+            //textBlock1.Text = labels[1];
+            //textBlock2.Text = labels[2];
+            //textBlock3.Text = labels[3];
+            //textBlock4.Text = labels[4];
+
+            textBlock.Text = convertDataToList()[0];
+            textBlock1.Text = convertDataToList()[1];
+            textBlock2.Text = convertDataToList()[2];
+            textBlock3.Text = convertDataToList()[3];
+            textBlock4.Text = convertDataToList()[4];            
         }
 
-        private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //textBox1.Value(convertDataToList().getindex(0))
-        }
-
-
-        //[STAThread]
-        //public static void Main(string[] args)
+        //private void Label_Loaded(object sender, RoutedEventArgs e)
         //{
-        //    MainWindow mw = new MainWindow();
-        //    mw.InitializeComponent();
+        //    var label1 = sender as Label;
+        //    label1.Content = labels[0];
 
-        //    mw.Left = System.Windows.SystemParameters.WorkArea.Width - mw.Width;
-        //    mw.Top = System.Windows.SystemParameters.WorkArea.Height - mw.Height;
+        //    var label2 = sender as Label;
+        //    label2.Content = labels[1];
 
-        //    string machineName = Environment.MachineName;
-        //    string userName = Environment.UserName;
-        //    //Console.WriteLine("Current logged user: ");
-        //    // Console.WriteLine(machineName + " " + userName);
+        //    var label3 = sender as Label;
+        //    label3.Content = labels[2];
 
-        //    //Currently logged user
-        //    string loggedUser = compNameFromReg();
+        //    var label4 = sender as Label;
+        //    label4.Content = labels[3];
 
-        //    createFile();
-        //    readFromFile();
-        //    writeToFile(shiftListAndReturnResults(convertDataToList(), loggedUser));
-
-        //    //Date of OS installation
-        //    //Console.WriteLine("Date of OS installation: ");
-        //    //DateTime creation = File.GetCreationTime(@"C:\Windows\WindowsUpdate.log");
-        //    //Console.WriteLine(Convert.ToString(creation));
+        //    //var label5 = sender as Label;
+        //   // label5.Content = labels[5];
         //}
-
-        
-
-
-
-
     }
 }
