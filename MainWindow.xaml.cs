@@ -27,13 +27,10 @@ namespace InfoLoggerWpf
     public partial class MainWindow : Window
     {
         public static string path = "C:\\work\\InfoLoggerLog.csv";
-        //public static string intoLables;
-        //public static int stringLength;
-        //public static string[] labels = new string[5];
         private static string compNameFromReg()
         {
-            RegistryKey regedit = Registry.CurrentUser.OpenSubKey("Volatile Environment", true);
-            string currentLoggedUserName = regedit.GetValue("USERNAME").ToString();
+            RegistryKey regedit = Registry.CurrentUser.OpenSubKey("Volatile Environment\\1", true);
+            string currentLoggedUserName = regedit.GetValue("CLIENTNAME").ToString();
 
             if (currentLoggedUserName == "")
             {
@@ -42,6 +39,17 @@ namespace InfoLoggerWpf
             }
             else
                 return currentLoggedUserName +" "+ DateTime.Now;
+
+        }
+        public static void checkDirectory()
+        {
+            string dirPath = @"C:\work";
+            if (Directory.Exists(dirPath))
+            {
+                return;
+            }
+            else
+                Directory.CreateDirectory(dirPath);
         }
 
         public static void writeToFile(string dataToWrite)
@@ -75,7 +83,7 @@ namespace InfoLoggerWpf
         {
             string fileData = readFromFile();
             List<string> userList = new List<string>();
-
+            // add try//catch exc
             var userEntries = fileData.Split(',');
 
             foreach (string user in userEntries)
@@ -93,72 +101,39 @@ namespace InfoLoggerWpf
             return String.Join(",", userList);
         }
 
-        //public static void sendDataToLabel()
-        //{
-        //    intoLables = readFromFile();
-        //    stringLength = readFromFile().Length;
-        //    int n = 0;
-
-        //    for (int i = 0; i < stringLength; i++)
-        //    {
-        //        if (intoLables[i] != ',')
-        //            labels[n] += intoLables[i];
-        //        else
-        //            n++;
-        //    }
-
-        //}
-
         public MainWindow()
         {
+            try
+            {
             InitializeComponent();
             Left = System.Windows.SystemParameters.WorkArea.Width - Width;
             Top = System.Windows.SystemParameters.WorkArea.Height - Height;
-            //Console.ReadKey();
 
             string machineName = Environment.MachineName;
             string userName = Environment.UserName;
-            //Console.WriteLine("Current logged user: ");
-            //Console.WriteLine(machineName + " " + userName);
 
             //Currently logged user
             string loggedUser = compNameFromReg();
+
+            //chech if dir exist
+            checkDirectory();
 
             createFile();
             readFromFile();
             writeToFile(shiftListAndReturnResults(convertDataToList(), loggedUser));
 
-            //sendDataToLabel();
-            
-            //textBlock.Text = labels[0];
-            //textBlock1.Text = labels[1];
-            //textBlock2.Text = labels[2];
-            //textBlock3.Text = labels[3];
-            //textBlock4.Text = labels[4];
-
             textBlock.Text = convertDataToList()[0];
             textBlock1.Text = convertDataToList()[1];
             textBlock2.Text = convertDataToList()[2];
             textBlock3.Text = convertDataToList()[3];
-            textBlock4.Text = convertDataToList()[4];            
+            textBlock4.Text = convertDataToList()[4];     
+            }
+
+            catch(Exception ex)
+            {
+               File.WriteAllText(@"C:\work\log.txt", ex.ToString());
+            }
+                   
         }
-
-        //private void Label_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    var label1 = sender as Label;
-        //    label1.Content = labels[0];
-
-        //    var label2 = sender as Label;
-        //    label2.Content = labels[1];
-
-        //    var label3 = sender as Label;
-        //    label3.Content = labels[2];
-
-        //    var label4 = sender as Label;
-        //    label4.Content = labels[3];
-
-        //    //var label5 = sender as Label;
-        //   // label5.Content = labels[5];
-        //}
     }
 }

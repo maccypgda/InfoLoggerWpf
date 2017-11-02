@@ -3,12 +3,17 @@
 
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Height="125.046" 
 
-        Width="202.685" AllowsTransparency="True" WindowStyle="None" SizeToContent="WidthAndHeight" ResizeMode="NoResize" >
+        Width="202.685" AllowsTransparency="True" WindowStyle="None" SizeToContent="WidthAndHeight" ResizeMode="NoResize" ShowInTaskbar="False" >
+    
 
     <Window.Background>
         <SolidColorBrush Opacity="0.5" Color="White"/>
     </Window.Background>
     <Grid Margin="10,0,0,1" RenderTransformOrigin="0.5,0.5">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
         <Grid.RenderTransform>
             <TransformGroup>
                 <ScaleTransform/>
@@ -19,11 +24,11 @@
         </Grid.RenderTransform>
 
 
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="18" Margin="0,10,0,0" TextWrapping="Wrap" Text="111111" VerticalAlignment="Top" Width="182"/>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="18" Margin="0,33,0,0" TextWrapping="Wrap" Text="22222" VerticalAlignment="Top" Width="182"/>
-        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Height="18" Margin="0,56,0,0" TextWrapping="Wrap" Text="333333" VerticalAlignment="Top" Width="182"/>
-        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Height="18" Margin="0,81,0,0" TextWrapping="Wrap" Text="444444" VerticalAlignment="Top" Width="182"/>
-        <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Height="18" Margin="0,104,0,0" TextWrapping="Wrap" Text="55555" VerticalAlignment="Top" Width="182"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="18" Margin="0,5.975,0,0" TextWrapping="Wrap" Text="111111" VerticalAlignment="Top" Width="182" Grid.Row="1"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="18" Margin="0,28.975,0,0" TextWrapping="Wrap" Text="22222" VerticalAlignment="Top" Width="182" Grid.Row="1"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Height="18" Margin="0,51.975,0,0" TextWrapping="Wrap" Text="333333" VerticalAlignment="Top" Width="182" Grid.Row="1"/>
+        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Height="18" Margin="0,76.975,0,0" TextWrapping="Wrap" Text="444444" VerticalAlignment="Top" Width="182" Grid.Row="1"/>
+        <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Height="18" Margin="0,99.975,0,0" TextWrapping="Wrap" Text="55555" VerticalAlignment="Top" Width="182" Grid.Row="1"/>
 
 
 
