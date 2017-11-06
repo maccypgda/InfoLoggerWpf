@@ -27,9 +27,27 @@ namespace InfoLoggerWpf
     public partial class MainWindow : Window
     {
         public static string path = "C:\\work\\InfoLoggerLog.csv";
+
         private static string compNameFromReg()
         {
-            RegistryKey regedit = Registry.CurrentUser.OpenSubKey("Volatile Environment\\1", true);
+            string keyPath = null;
+            String registryKey = @"Volatile Environment";
+
+            RegistryKey tempKey = null;
+
+            using (Microsoft.Win32.RegistryKey key = Registry.CurrentUser.OpenSubKey(registryKey))
+            {
+                foreach (string subKeyName in key.GetSubKeyNames())
+                {
+                    using (tempKey = key.OpenSubKey(subKeyName))
+                    {
+                        keyPath = tempKey.Name.Remove(0, 18);
+                    }
+                }
+            }
+
+            //RegistryKey regedit = Registry.CurrentUser.OpenSubKey("Volatile Environment\\1", true);
+            RegistryKey regedit = Registry.CurrentUser.OpenSubKey(keyPath, true);
             string currentLoggedUserName = regedit.GetValue("CLIENTNAME").ToString();
 
             if (currentLoggedUserName == "")
